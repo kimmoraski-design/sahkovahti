@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b2136">
+  <meta name="description" content="Suomen pörssisähkön nykyhinnan näyttävä PWA.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <title>Sähkövahti</title>
+  <style>
+    :root{font-family:system-ui,sans-serif;color-scheme:dark;background:#071522;color:#f4f8fb}
+    *{box-sizing:border-box} body{margin:0} main{width:min(720px,100%);margin:auto;padding:22px}
+    h1{font-size:1.7rem;margin:8px 0}.sub{color:#a9bfd0;margin-top:0}.card{background:#0e2940;border:1px solid #24506e;border-radius:20px;padding:20px;margin:18px 0;box-shadow:0 12px 35px #0004}
+    .label{color:#a9bfd0}.price{font-size:3.25rem;font-weight:800;line-height:1.05;margin:10px 0}.unit{font-size:1rem;color:#bfd3df}.status{display:inline-block;border-radius:999px;padding:7px 11px;background:#173e56;color:#cbe9f6}.ok{background:#13462f;color:#bff2d1}.bad{background:#55252a;color:#ffd0d0}
+    button{width:100%;padding:14px;border:0;border-radius:12px;background:#48c5ee;color:#071522;font-size:1rem;font-weight:800;margin-top:14px;cursor:pointer}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mini{background:#0a2134;border-radius:13px;padding:13px}.value{font-size:1.1rem;font-weight:700;margin-top:5px}
+    details{margin-top:14px;color:#c0d0da} footer{font-size:.85rem;color:#8fa7b7;margin:22px 0} @media(max-width:480px){.price{font-size:2.75rem}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Sähkövahti</h1>
+  <p class="sub">Suomen pörssisähkön nykyinen varttihinta.</p>
+  <section class="card">
+    <span id="status" class="status">Haetaan hintaa...</span>
+    <div class="label" style="margin-top:18px">Hinta nyt</div>
+    <div class="price"><span id="price">--</span> <span class="unit">snt/kWh</span></div>
+    <div class="grid">
+      <div class="mini"><div class="label">Hinnan ajankohta</div><div id="period" class="value">--</div></div>
+      <div class="mini"><div class="label">Tarkistettu</div><div id="checked" class="value">--</div></div>
+    </div>
+    <button id="refresh">Päivitä nyt</button>
+    <details><summary>Miten päivitys toimii?</summary><p>Sovellus tarkistaa hinnan avattaessa ja tämän jälkeen kerran tunnissa niin kauan kuin se on avoinna. Android voi sallia myös taustapäivityksiä, mutta niiden tarkkaa aikaa ei voida taata PWA-sovelluksessa.</p></details>
+  </section>
+  <footer>Hinta sisältää arvonlisäveron. Spot-hintaan eivät sisälly sähkönmyyjän marginaali, perusmaksu, siirto tai sähkövero. Lähde: Porssisahko.net API.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
